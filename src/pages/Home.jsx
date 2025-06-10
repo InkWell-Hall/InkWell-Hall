@@ -5,7 +5,6 @@ import search from "../assets/images/search2.jpg";
 import { ArrowRight } from "lucide-react";
 import another from "../assets/images/another.jpg";
 import stars from "../assets/images/Stars.png";
-import compLogo from "../assets/images/logo.svg";
 import user1 from "../assets/images/1chat.jfif";
 import header from "../assets/images/header.jpg";
 import Lartey from "../assets/images/Lartey.jpg";
@@ -18,7 +17,7 @@ const Home = () => {
   return (
     <div>
       <HomeNavbar />
-      <header className=" header w-full h-[65vh] relative overflow-hidden">
+      <header className=" header w-full h-[65vh] relative overflow-hidden mt-10">
         <video
           src={vid}
           autoPlay
