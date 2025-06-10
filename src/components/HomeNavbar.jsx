@@ -1,4 +1,3 @@
-import React from "react";
 import compLogo from "../assets/images/logowhite.png";
 import { Link } from "react-router";
 
