@@ -15,34 +15,6 @@ import HomeNavbar from "../components/HomeNavbar.jsx";
 import axios from "axios";
 
 const Home = () => {
-  const [data, setData] = useState([]);
-
-  const fetchData = () => {
-    axios
-      .get("https://fakestoreapi.in/api/products")
-      .then((response) => {
-        console.log("Fetched response:", response.products);
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  };
-
-  const getData = () => {
-    fetch("http://localhost:5173/api/v1/Books")
-      .then((res) => res.json())
-      .then((res) => console.log(res));
-  };
-
-  useEffect(() => {
-    fetchData();
-    // console.log(data);
-  }, []);
-  useEffect(() => {
-    console.log(data);
-  }, []);
-
   return (
     <div>
       <HomeNavbar />
@@ -271,28 +243,16 @@ const Home = () => {
               Passionat about creating a user-friendly library solution and
               enhancing community management{" "}
             </p>
-            <a
-              href="#"
-              className="flex gap-2 items-center hover:gap-3 transition-all duration-300 font-bold"
-            >
-              Explore <ArrowRight size={17} />{" "}
-            </a>
           </div>
           {/* Kofi lartey's card */}
           <div className="cards flex flex-col items-center gap-4">
-            <img src={Lartey} alt="" className="w-70 rounded" />
+            <img src={Lartey} alt="" className="w-70 rounded h-50" />
             <h1 className="font-lead-font font-bold">Alpheius Gbegbi</h1>
             <p>Snr Backend Developer</p>
             <p>
-              Passionat about creating a user-friendly library solution and
-              enhancing community management{" "}
+              "Passionat about creating a user-friendly library solution and
+              enhancing community management"{" "}
             </p>
-            <a
-              href="#"
-              className="flex gap-2 items-center hover:gap-3 transition-all duration-300 font-bold"
-            >
-              Explore <ArrowRight size={17} />{" "}
-            </a>
           </div>
           {/* angela */}
           <div className="cards flex flex-col items-center gap-4">
@@ -303,12 +263,6 @@ const Home = () => {
               Passionat about creating a user-friendly library solution and
               enhancing community management{" "}
             </p>
-            <a
-              href="#"
-              className="flex gap-2 items-center hover:gap-3 transition-all duration-300 font-bold"
-            >
-              Explore <ArrowRight size={17} />{" "}
-            </a>
           </div>
           {/*  */}
           <div className="cards flex flex-col items-center gap-5">
@@ -319,12 +273,6 @@ const Home = () => {
               Passionat about creating a user-friendly library solution and
               enhancing community management{" "}
             </p>
-            <a
-              href="#"
-              className="flex gap-2 items-center hover:gap-3 transition-all duration-300 font-bold"
-            >
-              Explore <ArrowRight size={17} />{" "}
-            </a>
           </div>
           {/*  */}
           <div className="cards flex flex-col items-center gap-4">
@@ -332,15 +280,9 @@ const Home = () => {
             <h1 className="font-lead-font font-bold">Swatson Jnr</h1>
             <p>Team Lead</p>
             <p>
-              Passionat about creating a user-friendly library solution and
-              enhancing community management{" "}
+              "Passionat about creating a user-friendly library solution and
+              enhancing community management"
             </p>
-            <a
-              href="#"
-              className="flex gap-2 items-center hover:gap-3 transition-all duration-300 font-bold"
-            >
-              Explore <ArrowRight size={17} />{" "}
-            </a>
           </div>
         </div>
         {/* join us */}
