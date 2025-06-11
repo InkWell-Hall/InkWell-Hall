@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { apiClient } from "../api/client";
 
 const Collections = () => {
@@ -38,5 +38,4 @@ const Collections = () => {
     </div>
   );
 };
-
 export default Collections;

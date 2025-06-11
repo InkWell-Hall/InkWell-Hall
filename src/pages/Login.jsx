@@ -1,6 +1,6 @@
 import { useState } from "react";
-import logo from "../assets/images/logoblack.jpg";
-import logowhite from "../assets/images/logowhite.png";
+import logo from "../assets/images/logoDark.PNG";
+import logowhite from "../assets/images/whitelogo.jpg";
 
 export default function Login() {
   const [isActive, setIsActive] = useState(false);

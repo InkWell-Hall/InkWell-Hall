@@ -1,9 +1,11 @@
 import React from "react";
-
+import Sidebar from "../components/Sidebar";
+import Navbar from "../components/Navbar";
 const Dashboard = () => {
   return (
-    <div>
-      <h1>Welcome oooo!!!!!</h1>
+    <div className="bg-">
+      <Navbar />
+      <Sidebar />
     </div>
   );
 };
