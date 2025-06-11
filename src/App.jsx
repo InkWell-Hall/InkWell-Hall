@@ -5,6 +5,8 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Collections from "./pages/Collections";
 import Books from "./pages/Books";
+import NotFound from "./pages/NotFound";
+// import SearchBar from "./components/SearchBar";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +26,7 @@ const router = createBrowserRouter([
     element: <Collections />,
   },
   {
-    path: "/book",
+    path: "/books/:bookId",
     element: <Books />,
   },
   {
@@ -33,13 +35,14 @@ const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: "",
+    element: <NotFound />,
   },
 ]);
 
 const App = () => {
   return (
     <div>
+      {/* <SearchBar /> */}
       <RouterProvider router={router} />
     </div>
   );

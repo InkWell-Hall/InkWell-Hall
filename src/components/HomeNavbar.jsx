@@ -13,22 +13,22 @@ const HomeNavbar = () => {
 
         <ul className="flex gap-10 ">
           <li>
-            <a href="" className="font-lead-font">
+            <a href="/login" className="font-lead-font">
               Dashboard
             </a>
           </li>
           <li>
-            <a href="" className="font-lead-font ">
+            <a href="login" className="font-lead-font ">
               Search Books
             </a>
           </li>
           <li>
-            <a href="" className="font-lead-font">
+            <a href="login" className="font-lead-font">
               My Profile
             </a>
           </li>
           <li>
-            <a href="" className="font-lead-font">
+            <a href="login" className="font-lead-font">
               Collections
             </a>
           </li>

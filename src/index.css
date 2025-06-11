@@ -6,3 +6,8 @@
   --font-lead-font: "BIZ UDPMincho";
   --font-body-font: "Lato";
 }
+
+html {
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}

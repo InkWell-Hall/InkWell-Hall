@@ -14,6 +14,19 @@ import HomeNavbar from "../components/HomeNavbar.jsx";
 import axios from "axios";
 
 const Home = () => {
+  const [data, setData] = useState([]);
+
+  const getData = () => {
+    axios
+      .get(
+        "https://inkwell-hall-backend.onrender.com/api/v1/Books/6845592d858081f75f70f10f"
+      )
+      .then((response) => console.log(response));
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
   return (
     <div>
       <HomeNavbar />
@@ -41,10 +54,10 @@ const Home = () => {
           </p>
           <div className="flex gap-8 mt-5">
             <button className="bg-[#de3326] text-white py-2 px-3 rounded-full cursor-pointer">
-              <a href="/sign-up"> Learn More </a>
+              <a href="/login"> Learn More </a>
             </button>
             <button className="bg-[#fff] text-black border border-gray-400 cursor-pointer py-2 px-3 rounded-full">
-              <a href="/sign-up">Sign Up</a>
+              <a href="/login">Sign Up</a>
             </button>
           </div>
         </div>
@@ -71,7 +84,7 @@ const Home = () => {
                   all users
                 </p>
                 <a
-                  href="/sign-up"
+                  href="/login"
                   className="flex gap-2 items-center hover:gap-3 transition-all duration-300 font-bold"
                 >
                   Learn more <ArrowRight size={17} />
@@ -109,7 +122,7 @@ const Home = () => {
                 </p>
                 <div>
                   <a
-                    href="/sign-up"
+                    href="/login"
                     className="flex gap-2 items-center hover:gap-3 transition-all duration-300 font-bold"
                   >
                     Sign up <ArrowRight size={17} />
@@ -212,10 +225,10 @@ const Home = () => {
             </p>
             <div className="flex gap-10 mt-7">
               <button className="bg-[#de3326] px-4 py-2 rounded-full text-white">
-                <a href="/sign-up">Sign Up</a>
+                <a href="/login">Sign Up</a>
               </button>
               <button className="bg-black border border-white px-3 py-2 rounded-full text-white">
-                <a href="/sign-up">Learn more</a>
+                <a href="/login">Learn more</a>
               </button>
             </div>
           </div>
