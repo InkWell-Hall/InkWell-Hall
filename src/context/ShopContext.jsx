@@ -4,10 +4,8 @@ import { products } from "../assets/images/assets";
 export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
-
-    
   const value = {
-    products
+    products,
   };
 
   return (

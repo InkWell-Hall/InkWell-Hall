@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
-import { ShopContext } from "../context/ShopContext";
+// import React, { useContext } from "react";
+// import { ShopContext } from "../context/ShopContext";
 import { Link } from "react-router";
 
 const BookItem = ({ id, image, name, price }) => {
-  const { products } = useContext(ShopContext);
+  // const { products } = useContext(ShopContext);
   return (
     <div>
       <Link to={`/books/${id}`} className="text-gray-700 cursor-pointer">

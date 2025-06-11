@@ -6,7 +6,9 @@ import Login from "./pages/Login";
 import Collections from "./pages/Collections";
 import Books from "./pages/Books";
 import NotFound from "./pages/NotFound";
+import AddBook from "./pages/AddBook";
 // import SearchBar from "./components/SearchBar";
+import { ToastContainer } from "react-toastify";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +36,10 @@ const router = createBrowserRouter([
     element: <Dashboard />,
   },
   {
+    path: "/add-book",
+    element: <AddBook />,
+  },
+  {
     path: "*",
     element: <NotFound />,
   },
@@ -44,6 +50,7 @@ const App = () => {
     <div>
       {/* <SearchBar /> */}
       <RouterProvider router={router} />
+      <ToastContainer />
     </div>
   );
 };

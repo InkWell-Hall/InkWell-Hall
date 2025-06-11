@@ -4,19 +4,17 @@ import BookItem from "./BookItem";
 import { useParams } from "react-router";
 
 const RelatedBooks = ({ category, subCategory }) => {
-  const { products } = useContext(ShopContext);
+  const { products, books } = useContext(ShopContext);
   const [related, setRelated] = useState([]);
   const { bookId } = useParams();
 
   useEffect(() => {
-    if (products.length > 0) {
-      let productsCopy = products.slice();
+    if (books.length > 0) {
+      let booksCopy = books.slice();
 
-      productsCopy = productsCopy.filter((item) => category === item.category);
-      productsCopy = productsCopy.filter(
-        (item) => subCategory === item.subCategory
-      );
-      setRelated(productsCopy.slice(0, 5));
+      booksCopy = booksCopy.filter((item) => category === item.category);
+      booksCopy = booksCopy.filter((item) => subCategory === item.subCategory);
+      setRelated(booksCopy.slice(0, 5));
     }
   }, [products]);
 
