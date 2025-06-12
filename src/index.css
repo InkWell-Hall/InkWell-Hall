@@ -24,3 +24,15 @@ html {
     transform: rotate(360deg);
   }
 }
+
+@keyframes slide {
+  0% {
+    transform: translateX(20%);
+  }
+  100% {
+    transform: translateX(-5340px);
+  }
+}
+.slideshow {
+  animation: slide 20s linear alternate;
+}
