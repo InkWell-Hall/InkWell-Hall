@@ -2,7 +2,7 @@
 // import { ShopContext } from "../context/ShopContext";
 import { Link } from "react-router";
 
-const BookItem = ({ id, image, name, price }) => {
+const BookItem = ({ id, image, title, author }) => {
   // const { products } = useContext(ShopContext);
   return (
     <div>
@@ -11,11 +11,11 @@ const BookItem = ({ id, image, name, price }) => {
           <img
             src={image[0]}
             alt=""
-            className="hover:scale-110 transition ease-in-out"
+            className="hover:scale-110 transition ease-in-out h-70"
           />
         </div>
-        <p className="pt-3 pb-1 text-sm">{name}</p>
-        <p className="text-sm font-medium">${price}</p>
+        <p className="pt-3 pb-1 text-sm">{title}</p>
+        <p className="text-sm font-medium">{author}</p>
       </Link>
     </div>
   );

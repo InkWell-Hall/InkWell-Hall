@@ -11,18 +11,7 @@ const ShopContextProvider = (props) => {
       .get("/Books")
       .then((response) => {
         // console.log(response.data);
-        setBooks(response.data.slice(0, 10));
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  const deleteBook = (id) => {
-    apiClient
-      .get("/Books" + `${id}`)
-      .then((response) => {
-        console.log(response);
+        setBooks(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -31,12 +20,11 @@ const ShopContextProvider = (props) => {
 
   useEffect(() => {
     getBooks();
-    deleteBook();
   }, []);
 
   const value = {
     books,
-    deleteBook,
+    // deleteBook,
   };
 
   return (

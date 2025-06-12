@@ -9,6 +9,7 @@ import { ShopContext } from "../context/ShopContext";
 const Collections = () => {
   const { books } = useContext(ShopContext);
   // const [books, setBooks] = useState([]);
+  const atCollectionPage = location.pathname === "/collections";
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 

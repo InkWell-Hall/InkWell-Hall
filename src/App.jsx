@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound";
 import AddBook from "./pages/AddBook";
 // import SearchBar from "./components/SearchBar";
 import { ToastContainer } from "react-toastify";
+import EditBook from "./pages/EditBook";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
   {
     path: "/add-book",
     element: <AddBook />,
+  },
+  {
+    path: "/edit-book/:id",
+    element: <EditBook />,
   },
   {
     path: "*",

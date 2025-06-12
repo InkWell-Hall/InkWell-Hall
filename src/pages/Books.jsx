@@ -1,15 +1,17 @@
-import { useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import React, { useContext, useEffect, useState } from "react";
-import { ShopContext } from "../context/ShopContext";
+// import { ShopContext } from "../context/ShopContext";
 // import { assets } from "../assets/images/assets";
 import RelatedBooks from "../components/RelatedBooks";
 import { apiClient } from "../api/client";
-import { Delete, DeleteIcon, Edit, Trash2 } from "lucide-react";
+import { ArrowBigLeft, Delete, DeleteIcon, Edit, Trash2 } from "lucide-react";
 import Modal from "../modals/DeleteBookModal";
+import { toast } from "react-toastify";
 
 const Books = () => {
   const { bookId } = useParams();
-  const { deleteBook } = useContext(ShopContext);
+  // const { deleteBook } = useContext(ShopContext);
+  const navigate = useNavigate();
   const [bookData, setBookData] = useState(null);
   const [image, setImage] = useState("");
 
@@ -36,10 +38,23 @@ const Books = () => {
         console.log(error);
       });
   };
-
+  const deleteBook = () => {
+    apiClient
+      .delete("/Books/" + `${bookId}`)
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          toast.success("Book Has been Deleted Successfully");
+          navigate("/collections");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(error.message);
+      });
+  };
   useEffect(() => {
     fetchBooksData();
-    deleteBook();
   }, [bookId]);
 
   // Separate useEffect to log when bookData actually changes
@@ -75,7 +90,14 @@ const Books = () => {
         </div>
         {/* .........book Info......... */}
         <div className="flex-1">
-          <h1 className="font-medium text-2xl mt-2">{bookData.title}</h1>
+          <div className=" flex justify-between">
+            <h1 className="font-medium text-2xl mt-2">{bookData.title}</h1>
+            <Link to={"/collections"}>
+              <button className="text-white bg-black px-2 py-2 rounded font-body-font cursor-pointer flex">
+                <ArrowBigLeft /> Go Back
+              </button>
+            </Link>
+          </div>
           {/* <div className="flex items-center gap-1 mt-2">
             <img src={assets.star_icon} alt="" className="w-3 5" />
             <img src={assets.star_icon} alt="" className="w-3 5" />
@@ -89,20 +111,27 @@ const Books = () => {
           </p>
           <p className="mt-5 text-gray-500 md-w-4/5">{bookData.description}</p>
           <hr className="mt-4 sm:w-4/5" />
-          <div className="text-sm text-gray-500 xl:mt-79 flex flex-col gap-1">
+          <div className="text-sm text-gray-500 flex flex-col gap-1">
             <p>100% Original product.</p>
             <p>Cash on delivery is available on this product.</p>
             <p>Easy return and exchange policy within 7 days.</p>
           </div>
           <div className="actions">
             <h1 className="text-2xl font-lead-font font-bold mb-5">Actions</h1>
-            <div className="flex gap-1.5">
-              <Edit />
-              <Trash2
-                color="red "
-                className="cursor-pointer"
-                onClick={openModal}
-              />
+            <div className="flex gap-1.5 items-center">
+              <Link
+                to={`/edit-book/${bookData.id}`}
+                className="bg-gray-500 py-2 px-2 rounded"
+              >
+                <Edit className="cursor-pointer" />
+              </Link>
+              <div className=" bg-red-400 py-2 px-2 rounded">
+                <Trash2
+                  color="black"
+                  className="cursor-pointer"
+                  onClick={openModal}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -114,19 +143,7 @@ const Books = () => {
           <p className="border px-5 py-3 text-sm">Reviews (100)</p>
         </div>
         <div className="flex flex-col gap-4 border px-6 py-6 text-sm text-gray-500">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias, porro
-          eligendi. Fugiat labore distinctio ratione alias eos consequuntur id
-          impedit voluptate velit, dicta ad maxime delectus ipsum fuga hic rerum
-          corporis culpa quos doloribus similique quia. Hic facilis quisquam id.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus error
-          impedit eius. <br />
-          inventore voluptatibus nulla maxime cumque aliquid officiis autem
-          minima soluta delectus debitis, consequatur quisquam illo similique
-          incidunt rerum? Enim quae voluptatem fugit quis impedit nulla iste
-          facere illum iusto et hic porro, laborum voluptatum a debitis non aut
-          sed! Quasi quo fugiat architecto rerum magnam alias assumenda
-          voluptatum excepturi atque. Maxime numquam architecto obcaecati optio
-          asperiores quisquam facilis.
+          {bookData.description}
         </div>
       </div>
       {/* ...........Display related products...........*/}
@@ -140,12 +157,15 @@ const Books = () => {
         <p>Please we beg reconsider oo!!</p>
         <div className="flex justify-between gap-3 mt-2">
           <button
-            className="bg-gray-700 px-2 py-1 text-white cursor-pointer rounded-2xl"
+            className="bg-gray-700 px-2 py-1 text-white cursor-pointer rounded"
             onClick={closeModal}
           >
             Cancel
           </button>
-          <button className="bg-red-900 px-2 py-1 text-white cursor-pointer rounded-2xl">
+          <button
+            className="bg-red-900 px-2 py-1 text-white cursor-pointer rounded"
+            onClick={deleteBook}
+          >
             Delete
           </button>
         </div>
