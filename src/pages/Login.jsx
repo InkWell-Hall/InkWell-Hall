@@ -1,5 +1,5 @@
 import { useState } from "react";
-import logo from "../assets/images/logowhite.png";
+import logo from "../assets/images/white.png";
 // import logowhite from "../assets/images/whitelogo.jpg";
 
 export default function Login() {

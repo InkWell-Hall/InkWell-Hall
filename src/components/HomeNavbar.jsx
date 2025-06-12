@@ -1,6 +1,6 @@
 // import compLogo from "../assets/images/logowhite.png";
 import { Link } from "react-router";
-import logowhite from "../assets/images/logowhite.png";
+import logowhite from "../assets/images/white.png";
 
 const HomeNavbar = () => {
   return (
