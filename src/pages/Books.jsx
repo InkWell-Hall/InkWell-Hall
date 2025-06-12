@@ -1,35 +1,43 @@
 import { useParams } from "react-router";
 import React, { useContext, useEffect, useState } from "react";
-import { ShopContext } from "../context/ShopContext";
+// import { ShopContext } from "../context/ShopContext";
 import { assets } from "../assets/images/assets";
 import RelatedBooks from "../components/RelatedBooks";
+import { apiClient } from "../api/client";
+import { Delete, DeleteIcon, Edit } from "lucide-react";
 const Books = () => {
   const { bookId } = useParams();
-  const { products } = useContext(ShopContext);
+  // const { products, books } = useContext(ShopContext);
   const [bookData, setBookData] = useState(null);
   const [image, setImage] = useState("");
 
   const fetchBooksData = () => {
-    console.log("Looking for bookId:", bookId);
-    console.log("Available products:", products);
+    apiClient
+      .get("/Books")
+      .then((response) => {
+        const allBooks = response.data;
+        const book = allBooks.find((item) => item.id === bookId);
+        console.log("Found book:", book);
 
-    const book = products.find((item) => item._id === bookId);
-    console.log("Found book:", book);
-
-    if (book) {
-      setBookData(book);
-      setImage(book.image[0]);
-    } else {
-      console.log("No book found with ID:", bookId);
-    }
+        if (book) {
+          setBookData(book);
+          setImage(book.imageURL[0]);
+        } else {
+          console.log("No book found with ID:", bookId);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
     fetchBooksData();
-  }, [bookId, products]);
+  }, [bookId]);
 
   // Separate useEffect to log when bookData actually changes
   useEffect(() => {
+    // setBookData(books);
     if (bookData) {
       console.log("bookData updated:", bookData);
     }
@@ -42,7 +50,7 @@ const Books = () => {
         {/* bookImage */}
         <div className="flex flex-1 flex-col-reverse gap-3 sm:flex-row">
           <div className="flex sm:flex-col overflow-x-auto sm:overflow-y-scroll justify-between sm:justify-normal sm:w-[18.7%] w-full">
-            {bookData.image.map((item, index) => {
+            {bookData.imageURL?.map((item, index) => {
               return (
                 <img
                   src={item}
@@ -60,7 +68,7 @@ const Books = () => {
         </div>
         {/* .........book Info......... */}
         <div className="flex-1">
-          <h1 className="font-medium text-2xl mt-2">{bookData.name}</h1>
+          <h1 className="font-medium text-2xl mt-2">{bookData.title}</h1>
           <div className="flex items-center gap-1 mt-2">
             <img src={assets.star_icon} alt="" className="w-3 5" />
             <img src={assets.star_icon} alt="" className="w-3 5" />
@@ -69,13 +77,19 @@ const Books = () => {
             <img src={assets.star_icon} alt="" className="w-3 5" />
             <p className="pl-2">(677)</p>
           </div>
-          <p className="mt-5 text-3xl font-medium">${bookData.price}</p>
+          <p className="mt-5 text-3xl ">
+            Written by: <span className="font-medium">{bookData.author}</span>
+          </p>
           <p className="mt-5 text-gray-500 md-w-4/5">{bookData.description}</p>
           <hr className="mt-4 sm:w-4/5" />
-          <div className="text-sm text-gray-500 mt-5 flex flex-col gap-1">
+          <div className="text-sm text-gray-500 xl:mt-79 flex flex-col gap-1">
             <p>100% Original product.</p>
             <p>Cash on delivery is available on this product.</p>
             <p>Easy return and exchange policy within 7 days.</p>
+          </div>
+          <div className="actions">
+            <Edit />
+            <DeleteIcon />
           </div>
         </div>
       </div>
@@ -104,7 +118,7 @@ const Books = () => {
       {/* ...........Display related products...........*/}
       <RelatedBooks
         category={bookData.category}
-        subCategory={bookData.subCategory}
+        // subCategory={bookData.subCategory}
       />
     </div>
   ) : (

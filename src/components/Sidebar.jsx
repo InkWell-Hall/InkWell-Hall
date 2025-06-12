@@ -9,13 +9,20 @@ import {
   Settings,
   UserPlus,
   AlertCircle,
+  Plus,
 } from "lucide-react";
 import whitelogo from "../assets/images/whitelogo.jpg";
+import { Link } from "react-router";
+import Modal from "../modals/DeleteBookModal";
 const Sidebar = () => {
   const [activeItem, setActiveItem] = useState("Dashboard");
   const [currentTime, setCurrentTime] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
   return (
-    <div className="flex min-h-screen font-sans bg-gray-100 sidebar">
+    <div className="flex min-h-screen font-sans bg-gray-900 sidebar fixed z-50 w-64 -left-3">
       <aside className="w-64 bg-black text-white p-4 flex flex-col border-l-4 shadow-lg rounded-r-lg">
         {/* Logo and App Name */}
         <div className="flex items-center mb-10 mt-2">
@@ -36,48 +43,36 @@ const Sidebar = () => {
           <ul>
             {/* Dashboard Item */}
             <li className="mb-2">
-              <SidebarItem
-                icon={<LayoutDashboard className="w-5 h-5 mr-3" />}
-                text="Dashboard"
-                isActive={activeItem === "Dashboard"}
-                onClick={() => setActiveItem("Dashboard")}
-              />
+              <Link to={"/dashboard"} className="cursor-pointer">
+                <SidebarItem
+                  icon={<LayoutDashboard className="w-5 h-5 mr-3 " />}
+                  text="Dashboard"
+                  isActive={activeItem === "Dashboard"}
+                  onClick={() => setActiveItem("Dashboard")}
+                />
+              </Link>
             </li>
             {/* Collections Item (formerly Catalog) */}
             <li className="mb-2">
-              <SidebarItem
-                icon={<BookOpen className="w-5 h-5 mr-3" />}
-                text="Collections"
-                isActive={activeItem === "Collections"}
-                onClick={() => setActiveItem("Collections")}
-              />
+              <Link to={"/collections"}>
+                <SidebarItem
+                  icon={<BookOpen className="w-5 h-5 mr-3" />}
+                  text="Collections"
+                  isActive={activeItem === "Collections"}
+                  onClick={() => setActiveItem("Collections")}
+                />
+              </Link>
             </li>
             {/* Books Item */}
             <li className="mb-2">
-              <SidebarItem
-                icon={<Book className="w-5 h-5 mr-3" />}
-                text="Books"
-                isActive={activeItem === "Books"}
-                onClick={() => setActiveItem("Books")}
-              />
-            </li>
-            {/* Users Item */}
-            <li className="mb-2">
-              <SidebarItem
-                icon={<Users className="w-5 h-5 mr-3" />}
-                text="Users"
-                isActive={activeItem === "Users"}
-                onClick={() => setActiveItem("Users")}
-              />
-            </li>
-            {/* Branches Item */}
-            <li className="mb-2">
-              <SidebarItem
-                icon={<Building className="w-5 h-5 mr-3" />}
-                text="Branches"
-                isActive={activeItem === "Branches"}
-                onClick={() => setActiveItem("Branches")}
-              />
+              <Link to={"/add-book"}>
+                <SidebarItem
+                  icon={<Plus className="w-5 h-5 mr-3" />}
+                  text="Add Book"
+                  isActive={activeItem === "Books"}
+                  onClick={() => setActiveItem("Books")}
+                />
+              </Link>
             </li>
           </ul>
         </nav>
@@ -88,10 +83,14 @@ const Sidebar = () => {
             icon={<LogOut className="w-5 h-5 mr-3" />}
             text="Log Out"
             isActive={activeItem === "Log Out"}
-            onClick={() => setActiveItem("Log Out")}
+            onClick={openModal}
           />
         </div>
       </aside>
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <h2 className="text-xl font-semibold mb-4">Modal Title</h2>
+        <p>This is a simple modal.</p>
+      </Modal>
     </div>
   );
 };
@@ -100,7 +99,7 @@ export function SidebarItem({ icon, text, isActive, onClick }) {
   return (
     <button
       className={`
-        w-full flex items-center p-3 rounded-lg text-left transition-colors duration-200
+        w-full flex items-center p-3 rounded-lg text-left transition-colors cursor-pointer duration-200
         ${
           isActive
             ? "bg-white text-black shadow-md"

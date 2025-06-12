@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import { apiClient } from "../api/client";
 import { toast } from "react-toastify";
+import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
 
 const AddBook = () => {
   const postBook = (event) => {
     event.preventDefault();
     //collect form input
-    const data = new FormData(event.target);
+    let data = new FormData(event.target);
     //post data to API
     apiClient
       .post("/Books", data, {
@@ -18,6 +20,7 @@ const AddBook = () => {
         console.log(response);
         if (response.status === 201) {
           toast.success("Book added successfully");
+          event.target.reset();
         }
       })
       .catch((error) => {
@@ -26,6 +29,14 @@ const AddBook = () => {
           toast.error(error.message);
         }
       });
+  };
+
+  const handleReset = (event) => {
+    event.preventDefault();
+    const form = document.getElementById("bookForm");
+    if (form) {
+      form.reset();
+    }
   };
 
   return (
@@ -104,139 +115,145 @@ const AddBook = () => {
     //     </form>
     //   </div>
     // </div>
-    <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
-      <div class="form-container w-full max-w-2xl rounded-xl overflow-hidden">
-        <div class="bg-indigo-600 py-6 px-8 text-white flex items-center justify-between">
-          <div>
-            <h1 class="text-2xl font-bold">Add New Book</h1>
-            <p class="text-indigo-100">Enter the book details below</p>
+    <div>
+      {" "}
+      <Navbar />
+      <Sidebar />
+      <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center ml-50 border">
+        <div class="form-container w-full max-w-2xl rounded-xl overflow-hidden">
+          <div class="bg-black py-6 px-8 text-white flex items-center justify-between">
+            <div>
+              <h1 class="text-2xl font-bold">Add New Book</h1>
+              <p class="text-indigo-100">Enter the book details below</p>
+            </div>
+            <div class="book-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-12 w-12"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                />
+              </svg>
+            </div>
           </div>
-          <div class="book-icon">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-12 w-12"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-              />
-            </svg>
-          </div>
+
+          <form id="bookForm" class="bg-white py-8 px-8" onSubmit={postBook}>
+            <div class="grid grid-cols-1 gap-6">
+              <div>
+                <label
+                  for="isbn"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  ISBN
+                </label>
+                <input
+                  type="text"
+                  id="isbn"
+                  name="isbn"
+                  required
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                  placeholder="e.g., 978-3-16-148410-0"
+                />
+                <p class="mt-1 text-xs text-gray-500">
+                  International Standard Book Number
+                </p>
+              </div>
+
+              <div>
+                <label
+                  for="title"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Title
+                </label>
+                <input
+                  type="text"
+                  id="title"
+                  name="title"
+                  required
+                  class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                  placeholder="Book title"
+                />
+              </div>
+
+              <div>
+                <label
+                  for="author"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Author
+                </label>
+                <input
+                  type="text"
+                  id="author"
+                  name="author"
+                  required
+                  class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                  placeholder="Author name"
+                />
+              </div>
+
+              <div>
+                <label
+                  for="description"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Description
+                </label>
+                <textarea
+                  id="description"
+                  name="description"
+                  rows="4"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                  placeholder="Book description"
+                ></textarea>
+              </div>
+
+              <div>
+                <label
+                  for="imagePath"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Image Path
+                </label>
+                <input
+                  type="text"
+                  id="imagePath"
+                  name="imagePath"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                  placeholder="Path to book cover image"
+                />
+                <p class="mt-1 text-xs text-gray-500">
+                  Enter a URL or file path to the book cover
+                </p>
+              </div>
+
+              <div class="flex items-center justify-between pt-4">
+                <button
+                  type="reset"
+                  onClick={handleReset}
+                  id="resetBtn"
+                  class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                  Reset Form
+                </button>
+                <button
+                  type="submit"
+                  class="px-6 py-2 border border-transparent cursor-pointer rounded-md shadow-sm text-sm font-medium text-white bg-black hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                  Add Book
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
-
-        <form id="bookForm" class="bg-white py-8 px-8">
-          <div class="grid grid-cols-1 gap-6">
-            <div>
-              <label
-                for="isbn"
-                class="block text-sm font-medium text-gray-700 mb-1"
-              >
-                ISBN
-              </label>
-              <input
-                type="text"
-                id="isbn"
-                name="isbn"
-                required
-                className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                placeholder="e.g., 978-3-16-148410-0"
-              />
-              <p class="mt-1 text-xs text-gray-500">
-                International Standard Book Number
-              </p>
-            </div>
-
-            <div>
-              <label
-                for="title"
-                class="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Title
-              </label>
-              <input
-                type="text"
-                id="title"
-                name="title"
-                required
-                class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                placeholder="Book title"
-              />
-            </div>
-
-            <div>
-              <label
-                for="author"
-                class="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Author
-              </label>
-              <input
-                type="text"
-                id="author"
-                name="author"
-                required
-                class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                placeholder="Author name"
-              />
-            </div>
-
-            <div>
-              <label
-                for="description"
-                class="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Description
-              </label>
-              <textarea
-                id="description"
-                name="description"
-                rows="4"
-                class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                placeholder="Book description"
-              ></textarea>
-            </div>
-
-            <div>
-              <label
-                for="imagePath"
-                class="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Image Path
-              </label>
-              <input
-                type="text"
-                id="imagePath"
-                name="imagePath"
-                class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                placeholder="Path to book cover image"
-              />
-              <p class="mt-1 text-xs text-gray-500">
-                Enter a URL or file path to the book cover
-              </p>
-            </div>
-
-            <div class="flex items-center justify-between pt-4">
-              <button
-                type="button"
-                id="resetBtn"
-                class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >
-                Reset Form
-              </button>
-              <button
-                type="submit"
-                class="px-6 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >
-                Add Book
-              </button>
-            </div>
-          </div>
-        </form>
       </div>
     </div>
   );
