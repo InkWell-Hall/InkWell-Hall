@@ -1,16 +1,22 @@
 import { useParams } from "react-router";
 import React, { useContext, useEffect, useState } from "react";
-// import { ShopContext } from "../context/ShopContext";
-import { assets } from "../assets/images/assets";
+import { ShopContext } from "../context/ShopContext";
+// import { assets } from "../assets/images/assets";
 import RelatedBooks from "../components/RelatedBooks";
 import { apiClient } from "../api/client";
-import { Delete, DeleteIcon, Edit } from "lucide-react";
+import { Delete, DeleteIcon, Edit, Trash2 } from "lucide-react";
+import Modal from "../modals/DeleteBookModal";
+
 const Books = () => {
   const { bookId } = useParams();
-  // const { products, books } = useContext(ShopContext);
+  const { deleteBook } = useContext(ShopContext);
   const [bookData, setBookData] = useState(null);
   const [image, setImage] = useState("");
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
   const fetchBooksData = () => {
     apiClient
       .get("/Books")
@@ -33,6 +39,7 @@ const Books = () => {
 
   useEffect(() => {
     fetchBooksData();
+    deleteBook();
   }, [bookId]);
 
   // Separate useEffect to log when bookData actually changes
@@ -69,14 +76,14 @@ const Books = () => {
         {/* .........book Info......... */}
         <div className="flex-1">
           <h1 className="font-medium text-2xl mt-2">{bookData.title}</h1>
-          <div className="flex items-center gap-1 mt-2">
+          {/* <div className="flex items-center gap-1 mt-2">
             <img src={assets.star_icon} alt="" className="w-3 5" />
             <img src={assets.star_icon} alt="" className="w-3 5" />
             <img src={assets.star_icon} alt="" className="w-3 5" />
             <img src={assets.star_icon} alt="" className="w-3 5" />
             <img src={assets.star_icon} alt="" className="w-3 5" />
             <p className="pl-2">(677)</p>
-          </div>
+          </div> */}
           <p className="mt-5 text-3xl ">
             Written by: <span className="font-medium">{bookData.author}</span>
           </p>
@@ -88,8 +95,15 @@ const Books = () => {
             <p>Easy return and exchange policy within 7 days.</p>
           </div>
           <div className="actions">
-            <Edit />
-            <DeleteIcon />
+            <h1 className="text-2xl font-lead-font font-bold mb-5">Actions</h1>
+            <div className="flex gap-1.5">
+              <Edit />
+              <Trash2
+                color="red "
+                className="cursor-pointer"
+                onClick={openModal}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -120,6 +134,22 @@ const Books = () => {
         category={bookData.category}
         // subCategory={bookData.subCategory}
       />
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <h2 className="text-xl font-semibold mb-4">Delete Book</h2>
+        <p>Are you sure you want to delete?</p>
+        <p>Please we beg reconsider oo!!</p>
+        <div className="flex justify-between gap-3 mt-2">
+          <button
+            className="bg-gray-700 px-2 py-1 text-white cursor-pointer rounded-2xl"
+            onClick={closeModal}
+          >
+            Cancel
+          </button>
+          <button className="bg-red-900 px-2 py-1 text-white cursor-pointer rounded-2xl">
+            Delete
+          </button>
+        </div>
+      </Modal>
     </div>
   ) : (
     <div className="">no data</div>

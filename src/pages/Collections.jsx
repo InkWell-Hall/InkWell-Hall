@@ -59,7 +59,8 @@ const Collections = () => {
         </div>
         <Modal isOpen={isModalOpen} onClose={closeModal}>
           <h2 className="text-xl font-semibold mb-4">Modal Title</h2>
-          <p>This is a simple modal.</p>
+          <p>Are you sure you want to delete?</p>
+          <p>Please we beg reconsider oo!!</p>
         </Modal>
       </div>
     </>

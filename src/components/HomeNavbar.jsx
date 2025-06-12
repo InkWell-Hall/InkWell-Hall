@@ -1,5 +1,6 @@
 // import compLogo from "../assets/images/logowhite.png";
 import { Link } from "react-router";
+import logowhite from "../assets/images/logowhite.png";
 
 const HomeNavbar = () => {
   return (
@@ -7,7 +8,7 @@ const HomeNavbar = () => {
       <nav className="flex justify-around items-center py-5 fixed z-10 w-full top-0 bg-[#F5F5DC] h-20">
         <div className="logo-container">
           <Link to="/login">
-            {/* <img src={compLogo} alt="" className="w-30" /> */}
+            <img src={logowhite} alt="" className="w-20" />
           </Link>
         </div>
 

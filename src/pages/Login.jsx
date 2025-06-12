@@ -1,6 +1,6 @@
 import { useState } from "react";
-import logo from "../assets/images/logoDark.PNG";
-import logowhite from "../assets/images/whitelogo.jpg";
+import logo from "../assets/images/logowhite.png";
+// import logowhite from "../assets/images/whitelogo.jpg";
 
 export default function Login() {
   const [isActive, setIsActive] = useState(false);
@@ -122,7 +122,7 @@ export default function Login() {
         >
           <form className="bg-white flex flex-col items-center justify-center h-full px-10">
             <h1 className=" font-bold mb-5 flex justify-start items-center font-lead-font text-3xl">
-              <img src={logowhite} alt="" className="w-40" />
+              {/* <img src={logowhite} alt="" className="w-40" /> */}
               {/* Login In */}
             </h1>
 
@@ -255,7 +255,7 @@ export default function Login() {
               }`}
             >
               <h1 className=" font-bold mb-4 flex flex-col justify-center text-2xl items-center font-lead-font">
-                <img src={logo} alt="" className="w-40" />
+                {/* <img src={logo} alt="" className="w-40" /> */}
                 InkWell-Hall Management{" "}
                 <span className="text-amber-200 text-2xl">System</span>
               </h1>

@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-import { products } from "../assets/images/assets";
 import { apiClient } from "../api/client";
 
 export const ShopContext = createContext();
@@ -20,9 +19,14 @@ const ShopContextProvider = (props) => {
   };
 
   const deleteBook = (id) => {
-    apiClient.get("/Books" + `${id}`).catch((error) => {
-      console.log(error);
-    });
+    apiClient
+      .get("/Books" + `${id}`)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
@@ -31,8 +35,8 @@ const ShopContextProvider = (props) => {
   }, []);
 
   const value = {
-    products,
     books,
+    deleteBook,
   };
 
   return (

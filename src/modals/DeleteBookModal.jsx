@@ -13,7 +13,10 @@ const Modal = ({ isOpen, onClose, children }) => {
         className="bg-white p-6 rounded shadow-lg w-[90%] max-w-md"
         onClick={(e) => e.stopPropagation()} // prevent click bubbling to backdrop
       >
-        <button className="text-gray-500 float-right mb-2" onClick={onClose}>
+        <button
+          className="text-gray-500 float-right mb-2 cursor-pointer"
+          onClick={onClose}
+        >
           &times;
         </button>
         {children}

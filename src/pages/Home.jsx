@@ -12,6 +12,8 @@ import Adubea from "../assets/images/Adubea.jpg";
 import vid from "../assets/images/womanhelp.mp4";
 import HomeNavbar from "../components/HomeNavbar.jsx";
 import axios from "axios";
+import logowhite from "../assets/images/whitelogo.jpg";
+import { Link } from "react-router";
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -30,7 +32,10 @@ const Home = () => {
   return (
     <div>
       <HomeNavbar />
-      <header className=" header w-full h-[65vh] relative overflow-hidden mt-10">
+      <header
+        className=" header w-full h-[65vh] relative overflow-hidden mt-10"
+        id="home"
+      >
         <video
           src={vid}
           autoPlay
@@ -309,7 +314,11 @@ const Home = () => {
       {/*  */}
       <footer className="mt-20 bg-black text-white">
         <div className="footer-container grid grid-cols-6 mb-20 w-[90%] mx-auto pt-10">
-          <div>logo</div>
+          <div>
+            <a href="#home">
+              <img src={logowhite} alt="" className="w-30 cursor-pointer" />
+            </a>
+          </div>
           {/*  */}
           <div>
             <h1 className="font-bold">Resource Section</h1>
