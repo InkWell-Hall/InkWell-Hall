@@ -8,16 +8,18 @@ import InkyBot from "../components/InkyBot";
 
 const AddBook = () => {
   const [images, setImages] = React.useState([""]);
+  const [loading, setLoading] = useState(false);
 
   const [title, setTitle] = useState("");
   const [isbn, setIsbn] = useState("");
   const [description, setDescription] = useState("");
-  const [imageURL, setImageURL] = useState([]);
+  const [imageURL, setImageURL] = useState([""]);
   const [author, setAuthor] = useState([]);
   const [category, setCategory] = useState("");
 
   const postBook = (event) => {
     event.preventDefault();
+    setLoading(true); // Start loading
     //collect form input
 
     // let data = new FormData(event.target);
@@ -26,7 +28,7 @@ const AddBook = () => {
       title,
       author,
       description,
-      author,
+
       isbn,
       category,
     };
@@ -54,6 +56,9 @@ const AddBook = () => {
         if (error) {
           toast.error(error.message);
         }
+      })
+      .finally(() => {
+        setLoading(false); // Stop loading
       });
   };
 
@@ -71,7 +76,7 @@ const AddBook = () => {
       {" "}
       <Navbar />
       <Sidebar />
-      <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center ml-50 border">
+      <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center lg:ml-50 ">
         <div className="form-container w-full max-w-2xl rounded-xl overflow-hidden">
           <div className="bg-black py-6 px-8 text-white flex items-center justify-between">
             <div>
@@ -104,7 +109,7 @@ const AddBook = () => {
                   onChange={(e) => setIsbn(e.target.value)}
                   required
                   className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                  placeholder="e.g., 978-3-16-148410-0"
+                  placeholder="e.g., 9783161484100"
                 />
                 <p className="mt-1 text-xs text-gray-500">
                   International Standard Book Number
@@ -222,7 +227,7 @@ const AddBook = () => {
                   type="submit"
                   className="px-6 py-2 border border-transparent cursor-pointer rounded-md shadow-sm text-sm font-medium text-white bg-black hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
-                  Add Book
+                  {loading ? "Adding..." : "Add Book"}
                 </button>
               </div>
             </div>

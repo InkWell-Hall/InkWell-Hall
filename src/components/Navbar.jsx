@@ -19,14 +19,14 @@ const Navbar = ({ id }) => {
           className={
             atEditPage || isCollectionsPage || atBokPage
               ? "flex gap-4 fixed w-full h-10 justify-between bg-white top-0 right-0 text-black items-center rounded-2xl p-2 z-30"
-              : "flex gap-4 fixed w-[90%] h-10 justify-between bg-white right-0 text-black items-center rounded-2xl p-2 z-30"
+              : "flex gap-4 fixed w-full lg:w-[90%] h-10 justify-between bg-white right-0 text-black items-center p-2 z-30"
           }
         >
           <div
             className={
               atEditPage || isCollectionsPage || atBokPage
                 ? "flex gap-2"
-                : "flex gap-2 ml-30"
+                : "flex gap-2 lg:ml-30 "
             }
           >
             {/* <img src={Icon} alt="" className=" w-5 h-8 rounded-4xl" />

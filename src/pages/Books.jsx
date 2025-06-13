@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import Navbar from "../components/Navbar";
 import InkyBot from "../components/InkyBot";
 import stars from "../assets/images/star-icon.jpeg";
+import loadingicon from "../assets/images/loadingicon.gif";
 
 const Books = () => {
   const { bookId } = useParams();
@@ -183,7 +184,9 @@ const Books = () => {
       </div>
     </>
   ) : (
-    <div className="">no data</div>
+    <div className="flex justify-center items-center h-full">
+      <img src={loadingicon} alt="Loading..." className="w-32 h-32 mt-40" />
+    </div>
   );
 };
 

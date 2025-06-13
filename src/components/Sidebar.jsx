@@ -22,7 +22,7 @@ const Sidebar = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
   return (
-    <div className="flex min-h-screen font-sans bg-gray-900 sidebar fixed z-50 md:w-64 sm:w-7 -left-3">
+    <div className="lg:flex min-h-screen font-sans bg-gray-900 sidebar fixed z-50 md:w-64 sm:w-7 -left-3 hidden">
       <aside className="w-64 bg-black text-white p-4 flex flex-col border-l-4 shadow-lg rounded-r-lg">
         {/* Logo and App Name */}
         <div className="flex items-center mb-10 mt-2">
@@ -90,9 +90,9 @@ const Sidebar = () => {
         </div>
       </aside>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <h2 className="text-xl font-semibold mb-4">LOGOUT </h2>
-        <p>Are you sure you want to logout?!!!!!!</p>
-        <div className="flex justify-between mt-3">
+        <h2 className="text-xl font-semibold mb-4 text-black">LOGOUT </h2>
+        <p className="text-black">Are you sure you want to logout?!!!!!!</p>
+        <div className="flex justify-between mt-3 text-black">
           <button
             onClick={closeModal}
             className="bg-gray-500 px-3 py-1 rounded text-white cursor-pointer"

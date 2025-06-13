@@ -18,24 +18,25 @@ import book14 from "../assets/images/book14.jpg";
 import book15 from "../assets/images/book15.jpg";
 import book16 from "../assets/images/book16.jpg";
 import Bookmock from "../assets/images/Bookmockup.jpg";
+import { Link } from "react-router";
 
 const Dashboard = () => {
   return (
     <>
-      <div className="bg-gray-900 text-white h-[160vh]">
+      <div className="bg-gray-900 text-white h-[160vh] overflow-x-hidden">
         <Navbar />
         <Sidebar />
-        <div className="text-white md:justify-start w-[63%] justify-center mx-auto items-center pt-20">
+        <div className="text-white md:justify-start lg:w-[63%] justify-center mx-auto items-center pt-20">
           <h1 className="text-3xl font-lead-font ">Welcome Benson Boone!,</h1>
           <p className="text-3xl font-lead-font">
             Ready for a new adventure today?
           </p>
         </div>
 
-        <div className="bg-[url(./assets/images/Bookmockup.jpg)] h-[70vh] bg-center mt-10 bg-no-repeat w-[73%] ml-70 bg-cover relative rounded-3xl">
-          <div className="absolute bottom-7 right-20">
+        <div className="bg-[url(./assets/images/Bookmockup.jpg)] h-[70vh] bg-center mt-10 bg-no-repeat lg:w-[73%] lg:ml-70 bg-cover relative rounded-3xl">
+          <div className="absolute bottom-7 right-20 ">
             <button className="bg-black text-white px-2 py-1 rounded-2xl  hover:bg-gray-900 cursor-pointer">
-              Read more
+              <Link to={"/collections"}> Read more </Link>
             </button>
           </div>
         </div>
@@ -51,14 +52,18 @@ const Dashboard = () => {
           <div className="flex gap-2 items-center backdrop-blur-sm bg-gray-800 w-40 px-3 py-2 rounded">
             <Book />
             <div>
-              <h1>12 Books Read</h1>
+              <h1>
+                <span className="text-blue-300">300</span> books
+              </h1>
               <p>This month</p>
             </div>
           </div>
           <div className="flex gap-2 items-center backdrop-blur-sm bg-gray-800 w-40 px-3 py-2 rounded">
             <Book />
             <div>
-              <h1>12 Books Read</h1>
+              <h1 className="whitespace-nowrap">
+                <span className="text-amber-300">190</span> Books Read
+              </h1>
               <p>This month</p>
             </div>
           </div>

@@ -1,66 +1,3 @@
-// import React, { useContext, useEffect, useState } from "react";
-// import { apiClient } from "../api/client";
-// import Navbar from "../components/Navbar";
-// import Sidebar from "../components/Sidebar";
-// import { Link } from "react-router";
-// import Modal from "../modals/DeleteBookModal";
-// import { ShopContext } from "../context/ShopContext";
-// import Card from "../components/Card";
-
-// const Collections = () => {
-// const { books } = useContext(ShopContext);
-// // const [books, setBooks] = useState([]);
-// const atCollectionPage = location.pathname === "/collections";
-
-// const [isModalOpen, setIsModalOpen] = useState(false);
-
-// const openModal = () => setIsModalOpen(true);
-// const closeModal = () => setIsModalOpen(false);
-
-//   return (
-//     <>
-//       <Navbar />
-//       {/* <Sidebar /> */}
-//       {/* <div className="flex justify-end items-center"> */}
-//       <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t">
-//         <div className="min-w-60">
-//           <p className="my-2 text-xl flex items-center cursor=pointer gap-2">
-//             FILTER
-//           </p>
-//         </div>
-//         {books.map((item, index) => {
-//           return (
-//             <div key={index} className="w-70">
-//               <Link to={`/books/${item.id}`}>
-//                 {/* <div>
-//                     <img src={`${item.imageURL[0]}`} alt="" className="w-40" />
-//                   </div>
-//                   <div>
-//                     <h1 className="font-body-font">
-//                       Ttile: <span className="font-bold"> {item.title}</span>
-//                     </h1>
-//                     <p>Author: {item.author}</p>
-//                   </div> */}
-
-//                 <Card
-//                   author={item.author}
-//                   isbn={item.isbn}
-//                   image={item.imageURL[0]}
-//                   title={item.title}
-//                   category={item.category}
-//                 />
-//               </Link>
-//               {/* <button onClick={openModal}>Open Modal</button> */}
-//             </div>
-//           );
-//         })}
-//       </div>
-//
-//     </>
-//   );
-// };
-// export default Collections;
-
 import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router";
@@ -162,10 +99,10 @@ const Collections = () => {
                 <input
                   type="checkbox"
                   className="w-3"
-                  value="Money"
+                  value="classic"
                   onClick={toggleCategory}
                 />{" "}
-                Money
+                Classic
               </p>
             </div>
           </div>

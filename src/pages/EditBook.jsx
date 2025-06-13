@@ -11,6 +11,7 @@ const EditBook = () => {
   const [images, setImages] = React.useState([""]);
   const [update, setUpdate] = React.useState([""]);
   const { id } = useParams();
+  const [loading, setLoading] = useState(false);
 
   const [title, setTitle] = useState("");
   const [isbn, setIsbn] = useState("");
@@ -50,6 +51,7 @@ const EditBook = () => {
 
   const updateBook = (event) => {
     event.preventDefault();
+    setLoading(true); // Start loading
     //collect form input
     let data = { title, description, imageURL, author, isbn };
     //post data to API
@@ -72,6 +74,9 @@ const EditBook = () => {
         if (error) {
           toast.error(error.message);
         }
+      })
+      .finally(() => {
+        setLoading(false); // Stop loading
       });
   };
 
@@ -218,7 +223,7 @@ const EditBook = () => {
                   type="submit"
                   className="px-6 py-2 border border-transparent cursor-pointer rounded-md shadow-sm text-sm font-medium text-white bg-black hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
-                  Edit Book
+                  {loading ? "Editing..." : "Edit Book"}
                 </button>
               </div>
             </div>
