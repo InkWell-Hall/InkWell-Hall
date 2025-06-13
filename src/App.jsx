@@ -10,6 +10,7 @@ import AddBook from "./pages/AddBook";
 // import SearchBar from "./components/SearchBar";
 import { ToastContainer } from "react-toastify";
 import EditBook from "./pages/EditBook";
+import InkyBot from "./components/InkyBot";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
   {
     path: "/edit-book/:id",
     element: <EditBook />,
+  },
+  {
+    path: "/inky",
+    element: <InkyBot />,
   },
   {
     path: "*",

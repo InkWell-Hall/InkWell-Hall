@@ -1,5 +1,8 @@
 import { useState } from "react";
-import logo from "../assets/images/white.png";
+import logo from "../assets/images/whitelogo.jpg";
+import { apiClient } from "../api/client";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 // import logowhite from "../assets/images/whitelogo.jpg";
 
 export default function Login() {
@@ -7,6 +10,34 @@ export default function Login() {
 
   const handleRegisterClick = () => {
     setIsActive(true);
+  };
+
+  const navigate = useNavigate();
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const registerUser = (e) => {
+    e.preventDefault();
+    const data = { username, password };
+    apiClient
+      .post("/User/", data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        if (response) {
+          navigate("/dashboard");
+          toast.success("Account Created Successfully");
+        }
+      })
+
+      .catch((error) => {
+        console.log(error);
+        toast.success(error.message);
+      });
   };
 
   const handleLoginClick = () => {
@@ -95,8 +126,9 @@ export default function Login() {
               className="bg-gray-100 border-none my-2 px-4 py-3 text-sm rounded-lg w-full outline-none focus:ring-2 focus:ring-purple-500"
             />
             <input
-              type="email"
-              placeholder="Email"
+              type="text"
+              name="username"
+              placeholder="Username"
               className="bg-gray-100 border-none my-2 px-4 py-3 text-sm rounded-lg w-full outline-none focus:ring-2 focus:ring-purple-500"
             />
             <input
@@ -120,13 +152,16 @@ export default function Login() {
             isActive ? "translate-x-full" : "translate-x-0"
           }`}
         >
-          <form className="bg-white flex flex-col items-center justify-center h-full px-10">
+          <form
+            className="bg-white flex flex-col items-center justify-center h-full px-10"
+            onSubmit={registerUser}
+          >
             <h1 className=" font-bold mb-5 flex justify-start items-center font-lead-font text-3xl">
               {/* <img src={logowhite} alt="" className="w-40" /> */}
               {/* Login In */}
             </h1>
 
-            <div className="flex space-x-3 my-5">
+            <div className="flex  space-x-3 my-5">
               <a
                 href="#"
                 className="border border-gray-300 rounded-lg w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-50 transition-colors"
@@ -185,15 +220,27 @@ export default function Login() {
             </span>
 
             <input
-              type="email"
-              placeholder="Email"
+              type="text"
+              name="username"
+              value={username}
+              required
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Username"
               className="bg-gray-100 border-none my-2 px-4 py-3 text-sm rounded-lg w-full outline-none focus:ring-2 focus:ring-purple-500"
             />
             <input
               type="password"
               placeholder="Password"
+              value={password}
+              required
+              maxLength={8}
+              minLength={8}
+              onChange={(e) => setPassword(e.target.value)}
               className="bg-gray-100 border-none my-2 px-4 py-3 text-sm rounded-lg w-full outline-none focus:ring-2 focus:ring-purple-500"
             />
+            <p className="text-xs">
+              password can have"@,7,+" and should more more than 8 char{" "}
+            </p>
 
             <a
               href="#"
@@ -203,10 +250,10 @@ export default function Login() {
             </a>
 
             <button
-              type="button"
+              type="submit"
               className="bg-purple-700 text-white text-xs px-12 py-3 border border-transparent rounded-lg font-semibold tracking-wider uppercase mt-3 cursor-pointer hover:bg-purple-800 transition-colors"
             >
-              Sign In
+              Get In
             </button>
           </form>
         </div>

@@ -17,6 +17,7 @@ import book13 from "../assets/images/book13.jpeg";
 import book14 from "../assets/images/book14.jpeg";
 import book15 from "../assets/images/book15.jpeg";
 import book16 from "../assets/images/book16.jpeg";
+import InkyBot from "../components/InkyBot";
 
 const Dashboard = () => {
   const { books } = useContext(ShopContext);
@@ -71,6 +72,7 @@ const Dashboard = () => {
           <img src={book15} alt="" className="w-[30%] h-[30%] rounded-2xl" />
         </div>
       </div>
+      <InkyBot />
     </div>
   );
 };

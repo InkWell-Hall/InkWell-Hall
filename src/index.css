@@ -24,15 +24,32 @@ html {
     transform: rotate(360deg);
   }
 }
-
-@keyframes slide {
+@keyframes slideRight {
   0% {
-    transform: translateX(20%);
+    transform: translateX(0%);
   }
   100% {
-    transform: translateX(-5340px);
+    transform: translateX(-200%);
   }
 }
+
 .slideshow {
-  animation: slide 20s linear alternate;
+  animation: slideRight 20s linear infinite;
+  white-space: nowrap; /* keep content on a single line */
+}
+
+.inky {
+  animation: bounce 0.8s linear infinite;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translate(0);
+  }
+  50% {
+    transform: translateY(30px);
+  }
+  100% {
+    transform: translate(0);
+  }
 }

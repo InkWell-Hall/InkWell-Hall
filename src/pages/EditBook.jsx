@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 // import Sidebar from "../components/Sidebar";
 import whitelogo from "../assets/images/whitelogo.jpg";
 import { Link, useNavigate, useParams, useSearchParams } from "react-router";
+import InkyBot from "../components/InkyBot";
 
 const EditBook = () => {
   const [images, setImages] = React.useState([""]);
@@ -224,6 +225,7 @@ const EditBook = () => {
           </form>
         </div>
       </div>
+      <InkyBot />
     </div>
   );
 };

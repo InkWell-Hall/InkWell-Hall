@@ -14,6 +14,9 @@ import HomeNavbar from "../components/HomeNavbar.jsx";
 import axios from "axios";
 import logowhite from "../assets/images/whitelogo.jpg";
 import { Link } from "react-router";
+import Swatson from "../assets/images/Swatson.jpeg";
+import Keziah from "../assets/images/Keziah.jpeg";
+import Sandra from "../assets/images/Sandra.jpeg";
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -220,7 +223,7 @@ const Home = () => {
 
       <section className="exp bg-black text-white">
         <div className="w-[80%] mx-auto flex gap-20 items-center pt-20 pb-10">
-          <div className="w-[50%]">
+          <div className="w-full md:w-[50%]">
             <h1 className="font-lead-font text-[40px]">
               Transform Your Library Experience
             </h1>
@@ -237,7 +240,7 @@ const Home = () => {
               </button>
             </div>
           </div>
-          <div className="w-[50%]">
+          <div className="w-[50%] hidden md:block">
             <img src={header} alt="" className="" />
           </div>
         </div>
@@ -250,52 +253,55 @@ const Home = () => {
           <p>Dedicated professionals committed to library innovation</p>
         </div>
 
-        <div className="team-cards grid grid-cols-5 gap-5 w-[80%] mx-auto">
+        <div className="team-cards grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 w-[80%] mx-auto">
           {/* my card */}
-          <div className="cards flex flex-col items-center gap-4">
-            <img src={search} alt="" className="w-70 rounded" />
+          <div className="cards flex flex-col items-justify items-justify gap-1">
+            <img src={Swatson} alt="" className="w-70 rounded" />
             <h1 className="font-lead-font font-bold">Swatson Jnr</h1>
-            <p>Team Lead</p>
+            <p className="font-body-font font-bold">Team Lead</p>
             <p>
               Passionat about creating a user-friendly library solution and
               enhancing community management{" "}
             </p>
           </div>
           {/* Kofi lartey's card */}
-          <div className="cards flex flex-col items-center gap-4">
-            <img src={Lartey} alt="" className="w-70 rounded h-50" />
+          <div className="cards flex flex-col items-justify gap-1">
+            <img src={Lartey} alt="" className="w-70 rounded h-76" />
             <h1 className="font-lead-font font-bold">Alpheius Gbegbi</h1>
-            <p>Snr Backend Developer</p>
+            <p className="font-body-font font-bold">Snr Backend Developer</p>
             <p>
               "Passionat about creating a user-friendly library solution and
               enhancing community management"{" "}
             </p>
           </div>
           {/* angela */}
-          <div className="cards flex flex-col items-center gap-4">
-            <img src={Adubea} alt="" className="w-70 rounded" />
-            <h1 className="font-lead-font font-bold">Angela</h1>
-            <p>Data Analyst</p>
+          <div className="cards flex flex-col items-justify items-justify gap-1">
+            <img src={Adubea} alt="" className="w-70 rounded  h-76" />
+            <h1 className="font-lead-font font-bold">Angela Adubea</h1>
+            <p className="font-body-font font-bold">Snr Data Analyst</p>
             <p>
               Passionat about creating a user-friendly library solution and
               enhancing community management{" "}
             </p>
           </div>
           {/*  */}
-          <div className="cards flex flex-col items-center gap-5">
-            <img src={search} alt="" className="w-70 rounded" />
-            <h1 className="font-lead-font font-bold">Swatson Jnr</h1>
-            <p>Team Lead</p>
+          <div className="cards flex flex-col items-justify items-justify gap-1">
+            <img src={Keziah} alt="" className="w-70 rounded  h-76" />
+            <h1 className="font-lead-font font-bold">Kasia Ampomah</h1>
+            <p className="font-body-font font-bold">
+              {" "}
+              Chief Procurement Officer
+            </p>
             <p>
               Passionat about creating a user-friendly library solution and
               enhancing community management{" "}
             </p>
           </div>
           {/*  */}
-          <div className="cards flex flex-col items-center gap-4">
-            <img src={search} alt="" className="w-70 rounded" />
-            <h1 className="font-lead-font font-bold">Swatson Jnr</h1>
-            <p>Team Lead</p>
+          <div className="cards flex flex-col items-justify items-justify gap-1">
+            <img src={Sandra} alt="" className="w-70 rounded  h-76" />
+            <h1 className="font-lead-font font-bold">Sandra Sarkodie</h1>
+            <p className="font-body-font font-bold">Snr Marketing </p>
             <p>
               "Passionat about creating a user-friendly library solution and
               enhancing community management"
@@ -313,7 +319,7 @@ const Home = () => {
       </section>
       {/*  */}
       <footer className="mt-20 bg-black text-white">
-        <div className="footer-container grid grid-cols-6 mb-20 w-[90%] mx-auto pt-10">
+        <div className="footer-container grid grid-cols-2 sm:grid-cols-4 gap-9 md:grid-cols-6 mb-20 w-[90%] mx-auto pt-10">
           <div>
             <a href="#home">
               <img src={logowhite} alt="" className="w-30 cursor-pointer" />

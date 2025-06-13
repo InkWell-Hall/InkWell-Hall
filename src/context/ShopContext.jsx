@@ -5,6 +5,8 @@ export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
   const [books, setBooks] = useState([]);
+  const [showSearch, setShowSearch] = useState(true);
+  const [search, setSearch] = useState("");
 
   const getBooks = () => {
     apiClient
@@ -24,7 +26,10 @@ const ShopContextProvider = (props) => {
 
   const value = {
     books,
-    // deleteBook,
+    showSearch,
+    setShowSearch,
+    search,
+    setSearch,
   };
 
   return (
